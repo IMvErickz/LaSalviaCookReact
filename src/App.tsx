@@ -1,16 +1,16 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import Logo from './assets/Logo'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <div>
-      <nav className='bg-black w-screen h-16'>
-        <h1 className='text-white text-3xl'>logo</h1>
+      <nav className='bg-[#0f172a] w-screen h-16'>
+        <Logo className="w-16"/>
       </nav>
 
-      <div className='w-screen h-screen bg-slate-500'>
+      <div className='w-screen h-screen bg-[#393256]'>
 
       </div>
     </div>
