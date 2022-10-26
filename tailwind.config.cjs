@@ -5,7 +5,11 @@ module.exports = {
      "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        cursive: 'URW Chancery L, cursive',
+      }
+    },
   },
   plugins: [],
 }
