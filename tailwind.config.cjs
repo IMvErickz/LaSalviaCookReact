@@ -8,6 +8,11 @@ module.exports = {
     extend: {
       fontFamily: {
         cursive: 'URW Chancery L, cursive',
+        freeMono: 'FreeMono, monospace',
+      },
+      colors: {
+        'background': '#393256',
+        'tittle': '#fcd34d',
       }
     },
   },
