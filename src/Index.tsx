@@ -3,7 +3,7 @@ import Logo from './Logo'
 
 function App() {
   function redirect() {
-      window.location.href = '../pages/recepies.html'
+      window.location.href = '/recepies.html'
     
   }
 
