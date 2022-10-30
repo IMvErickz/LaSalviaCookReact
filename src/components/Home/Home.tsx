@@ -1,11 +1,10 @@
-import { useState } from 'react'
-import Logo from './Logo'
+import React from 'react'
+//import { useState } from 'react'
+import Logo from '../../style/Logo'
+import { Link } from "react-router-dom";
 
 function App() {
-  function redirect() {
-      window.location.href = '/recepies.html'
-    
-  }
+  
 
   return (
     <div className='w-screen h-screen bg-background flex flex-col items-center'>
@@ -15,7 +14,7 @@ function App() {
         <p className='text-white text-3xl font-cursive'>O seu site de receitas favorito!</p>
       </header> <br /> <br />
       <div className='flex flex-col items-center'>
-        <button onClick={redirect} className='bg-[#fcd34d] p-2 rounded-lg hover:bg-[#fde68a] font-bold'>Clique aqui para ver todas as receitas</button>
+        <Link to='/receitas'><button className='bg-[#fcd34d] p-2 rounded-lg hover:bg-[#fde68a] font-bold'>Clique aqui para ver todas as receitas</button></Link>
 
       </div> <br /> <br /> <br />
 

@@ -1,4 +1,5 @@
-import Menu from './style/menu'
+import React from 'react'
+import Menu from '../../style/menu'
 
 function App() {
     return (
