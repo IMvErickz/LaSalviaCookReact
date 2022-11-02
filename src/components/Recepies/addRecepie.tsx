@@ -9,8 +9,6 @@ function Add() {
             Body: (document.getElementById("body") as HTMLTextAreaElement).value 
         }
 
-
-        localStorage.setItem("Recepie", JSON.stringify(recepie))
            Swal.fire(
                 'Parabéns',
                 'Sua receita foi salva com sucesso',
