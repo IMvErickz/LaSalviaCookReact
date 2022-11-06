@@ -9,11 +9,21 @@ function Add() {
             Body: (document.getElementById("body") as HTMLTextAreaElement).value 
         }
 
-           Swal.fire(
+        if (recepie.Tittle == "" || recepie.Body == "") {
+             Swal.fire(
+                'Os campos estão vazios',
+                'Por favor, digite algo',
+                'warning'
+)
+        } else {
+            Swal.fire(
                 'Parabéns',
                 'Sua receita foi salva com sucesso',
                 'success'
 )
+        }
+
+           
     }
 
     return (
