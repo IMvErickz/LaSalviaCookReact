@@ -9,6 +9,10 @@
     "preview": "vite preview",
     "server": "tsx watch server/server.ts"
   },
+
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
     "@fastify/cors": "^8.1.1",
     "@prisma/client": "^4.5.0",

@@ -17,7 +17,7 @@ async function start() {
     })
 
     fastify.get('/AdcionarReceita', async () => {
-        const add = await prisma.recepie.count
+        const add = await prisma.recepie.count()
         return {add}
     })
 
