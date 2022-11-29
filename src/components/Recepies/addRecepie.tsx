@@ -5,11 +5,7 @@ import { Header } from './../Header/Header'
 import { Link } from "react-router-dom";
 
 
-interface recepieProps{
-    tittleRes: string
-}
-
-function Add(props: recepieProps) {
+function Add() {
 
         const [recepieTittle, setRecepieTittle] = useState('')
         const [recepieBody, setRecepieBody] = useState('')
@@ -69,15 +65,3 @@ function Add(props: recepieProps) {
 
 export default Add
 
-export const getServerSideProps = async () => {
-    const [tittleResponse] = await Promise.all([
-        api.get("/AdcionarReceita/count")
-
-    ])
-
-    return {
-        props: {
-            tittleRes: tittleResponse.data.count,
-        }
-    }
-}
