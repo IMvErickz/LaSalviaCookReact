@@ -1,46 +1,83 @@
-import React from 'react'
+import React, { FormEvent, useState } from 'react'
 import Swal from 'sweetalert2'
+import { api } from '../../../lib/axios'
+import { Header } from './../Header/Header'
+import { Link } from "react-router-dom";
 
-function Add() {
 
-    function addedRecepie() {
-        const recepie = {
-            Tittle: (document.getElementById("tittle") as HTMLInputElement).value,
-            Body: (document.getElementById("body") as HTMLTextAreaElement).value 
+interface recepieProps{
+    tittleRes: string
+}
+
+function Add(props: recepieProps) {
+
+        const [recepieTittle, setRecepieTittle] = useState('')
+        const [recepieBody, setRecepieBody] = useState('')
+    
+        async function createRecepie(event: FormEvent) {
+
+            event.preventDefault()
+
+
+            try {
+                const recepie = await api.post('/AdcionarReceita/count', {
+                    Tittle: recepieTittle,
+                    Body: recepieBody
+                })
+            
+                //const { code } = recepie.data
+                //console.log(code)
+                //setRecepieTittle('')
+                Swal.fire(
+                    'Parabéns',
+                    'Receita salva com sucesso',
+                    'success'
+                )
+            } catch (err) {
+                Swal.fire(
+                    'Algo de errado aconteceu',
+                    'Tente novamente',
+                    'warning'
+                )
+            }
+
         }
-
-        if (recepie.Tittle == "" || recepie.Body == "") {
-             Swal.fire(
-                'Os campos estão vazios',
-                'Por favor, digite algo',
-                'warning'
-)
-        } else {
-            Swal.fire(
-                'Parabéns',
-                'Sua receita foi salva com sucesso',
-                'success'
-)
-        }
-
-           
-    }
 
     return (
         <div className='w-screen h-screen flex flex-col justify-center items-center bg-background'>
-            <h1 className='text-tittle font-cursive text-6xl'>Adicione sua receita</h1>  <br /> <br /> <br />
+            <Link to="/"><Header/></Link>
+            <form onSubmit={createRecepie} className='flex flex-col items-center justify-center'>
+                 <h1 className='text-tittle font-cursive text-4xl'>Adicione sua receita</h1>  <br /> <br /> <br />
             <div className='flex flex-col justify-center items-center'>
                 <label htmlFor="tittle" className='text-3xl text-zinc-200'>Título da receita</label>
-                <input id='tittle' type="text" className='rounded text-black w-56 h-9' /> <br />
+                    <input id='tittle' onChange={event => setRecepieTittle(event.target.value)}
+                        type="text" className='rounded text-black w-56 h-9'
+                        value={recepieTittle}
+                    /> <br />
 
                 <label htmlFor="body" className='text-3xl text-zinc-200'>Corpo da receita</label>
-                <textarea name="" id="body" cols={60} rows={10} placeholder="Digite aqui sua receita" className='rounded text-black'></textarea> <br /> <br />
-                <button onClick={addedRecepie} className='rounded bg-tittle w-full p-3 font-bold text-2xl hover:bg-slate-400'>Adcionar</button>
+                <textarea name="" onChange={event => setRecepieBody(event.target.value)} id="body" cols={60} rows={10} placeholder="Digite aqui sua receita" className='rounded text-black'></textarea> <br /> <br />
+                <button type='submit' className='rounded bg-tittle w-full p-3 font-bold text-2xl hover:bg-slate-400'>Adcionar</button>
 
             </div>
+            </form>
+           
 
         </div>
     )
 }
 
 export default Add
+
+export const getServerSideProps = async () => {
+    const [tittleResponse] = await Promise.all([
+        api.get("/AdcionarReceita/count")
+
+    ])
+
+    return {
+        props: {
+            tittleRes: tittleResponse.data.count,
+        }
+    }
+}
