@@ -16,9 +16,9 @@ function Add() {
 
 
             try {
-                const recepie = await api.post('/AdcionarReceita/count', {
-                    Tittle: recepieTittle,
-                    Body: recepieBody
+                const recepie = await api.post('/AdcionarReceita', {
+                    tittle: recepieTittle,
+                    body: recepieBody
                 })
             
                 //const { code } = recepie.data
