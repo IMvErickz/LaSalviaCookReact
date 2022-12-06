@@ -2,25 +2,24 @@ import Fastify from "fastify";
 import Cors from '@fastify/cors'
 import { PrismaClient } from '@prisma/client'
 import { z } from 'zod'
-import shortUniqueId from 'short-unique-id'
+import { getRecepie } from "./getRecepie";
 
 const prisma = new PrismaClient({
     log: ['query']
 })
 
 async function start() {
-    const fastify = Fastify({
-        logger: true
+     const fastify = Fastify({
+        logger: true,
+        
     })
+
 
     await fastify.register(Cors, {
         origin: true
     })
 
-    fastify.get('/AdcionarReceita/count', async () => {
-        const add = await prisma.recepie.findMany()
-        return {add}
-    })
+    await fastify.register(getRecepie)
 
     fastify.post('/AdcionarReceita', async (request, reply) => {
         const createRecepieBody = z.object({
