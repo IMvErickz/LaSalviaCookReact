@@ -4,16 +4,13 @@ import { Link } from 'react-router-dom'
 import { api } from '../../../lib/axios'
 import CSS from 'csstype';
 
-interface HomeProps{
-    recRecepie: Function;
-}
 
-export default function App(props: HomeProps) {
+
+export default function App() {
 
     
 
-    const recRecepie =
-        
+    function recRecepie(){
         api.get('recepies/count')
         
     
@@ -40,6 +37,11 @@ export default function App(props: HomeProps) {
 
                 
             })
+    }
+
+    recRecepie()
+        
+        
 
    
    
