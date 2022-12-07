@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Menu from '../../style/menu'
 import { Link } from 'react-router-dom'
 import { api } from '../../../lib/axios'
+import CSS from 'csstype';
 
 interface HomeProps{
     recRecepie: Function;
@@ -9,35 +10,38 @@ interface HomeProps{
 
 export default function App(props: HomeProps) {
 
-        function recRecepie() {
+    
+
+    const recRecepie =
+        
         api.get('recepies/count')
         
     
-        .then(function (response) {
+            .then(function (response) {
         
-            let res = response.data.count
-            let div = (document.getElementById('blockRecepie') as HTMLDivElement)
+                let res = response.data.count
+                let div = (document.getElementById('blockRecepie') as HTMLDivElement)
             
-            for (let i = 0; i < res.length; i++){ 
+                for (let i = 0; i < res.length; i++) {
                 
-                let transformTitle = response.data.count[i].tittle
+                    let transformTitle = response.data.count[i].tittle
         
-                console.log(JSON.stringify(transformTitle))
+                    console.log(JSON.stringify(transformTitle))
                 
-                let span = (document.getElementById('tittle') as HTMLSpanElement)
-                let t = document.createElement('button')
-                t.style.color = 'white'
-                t.style.fontWeight = 'bold'
-                t.style.fontSize='30px'
+                    let t = document.createElement('button')
+                    t.style.color = 'white'
+                    t.style.fontWeight = 'bold'
+                    t.style.fontSize = '30px'
+                    t.id = "openModal"
+                    t.innerHTML = transformTitle
 
-                t.innerHTML = transformTitle
+                    div.appendChild(t)
+                }
 
-                div.appendChild(t)
-            }
-  })
-} 
+                
+            })
+
    
-    recRecepie()
    
 
         return (
@@ -58,15 +62,16 @@ export default function App(props: HomeProps) {
                 </div>
 
                 <div id='blockRecepie' className='flex flex-col items-center border-solid border-black bg-[#1f2937] rounded-2xl w-80 gap-y-5'>
-                    <h1 id='tittle' className='font-bold text-3xl text-white'></h1>
+
                 </div>
 
             </div>
+
+            
+            
         )
     
 }
 
 
-
-    
 
