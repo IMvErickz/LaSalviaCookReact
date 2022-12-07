@@ -1,11 +1,15 @@
-import React, { FormEvent, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import Swal from 'sweetalert2'
 import { api } from '../../../lib/axios'
 import { Header } from './../Header/Header'
 import { Link } from "react-router-dom";
 
 
-function Add() {
+
+
+export default function Add() {
+
+    
 
         const [recepieTittle, setRecepieTittle] = useState('')
         const [recepieBody, setRecepieBody] = useState('')
@@ -14,21 +18,19 @@ function Add() {
 
             event.preventDefault()
 
-
             try {
                 const recepie = await api.post('/AdcionarReceita', {
                     tittle: recepieTittle,
                     body: recepieBody
                 })
-            
-                //const { code } = recepie.data
-                //console.log(code)
-                //setRecepieTittle('')
-                Swal.fire(
+                    .then(() => {
+                    Swal.fire(
                     'Parabéns',
                     'Receita salva com sucesso',
                     'success'
                 )
+                })
+                
             } catch (err) {
                 Swal.fire(
                     'Algo de errado aconteceu',
@@ -54,7 +56,6 @@ function Add() {
                 <label htmlFor="body" className='text-3xl text-zinc-200'>Corpo da receita</label>
                 <textarea name="" onChange={event => setRecepieBody(event.target.value)} id="body" cols={60} rows={10} placeholder="Digite aqui sua receita" className='rounded text-black'></textarea> <br /> <br />
                 <button type='submit' className='rounded bg-tittle w-full p-3 font-bold text-2xl hover:bg-slate-400'>Adcionar</button>
-
             </div>
             </form>
            
@@ -63,5 +64,4 @@ function Add() {
     )
 }
 
-export default Add
 
