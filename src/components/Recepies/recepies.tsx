@@ -47,7 +47,7 @@ export default function App() {
    
 
         return (
-            <div className="w-screen h-screen bg-background flex flex-col items-center gap-y-5">
+            <div className="bg-background flex flex-col items-center gap-y-5">
                 <header className='flex flex-col items-center'>
                     <Menu className='w-40' />
                     <h1 className="font-cursive text-6xl text-tittle">Receitas</h1>
@@ -63,7 +63,7 @@ export default function App() {
                     <Link to="/AdcionarReceita"><button className='bg-tittle p-2 rounded-lg hover:bg-[#fde68a] font-bold w-full'>Adicione sua receita</button></Link>
                 </div>
 
-                <div id='blockRecepie' className='flex flex-col items-center border-solid border-black bg-[#1f2937] rounded-2xl w-80 gap-y-5'>
+                <div id='blockRecepie' className='flex flex-col items-center border-solid border-black bg-[#1f2937] rounded-2xl w-80 gap-y-5 w-full'>
 
                 </div>
 

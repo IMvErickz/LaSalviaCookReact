@@ -23,14 +23,15 @@ export default function Add() {
                     tittle: recepieTittle,
                     body: recepieBody
                 })
-                    .then(() => {
+                
+                    const {code} = recepie.data
                     Swal.fire(
                     'Parabéns',
                     'Receita salva com sucesso',
                     'success'
                 )
-                })
-                
+               
+                await navigator.clipboard.writeText(code)
             } catch (err) {
                 Swal.fire(
                     'Algo de errado aconteceu',
