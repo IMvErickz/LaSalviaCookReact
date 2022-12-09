@@ -9,6 +9,7 @@ module.exports = {
       fontFamily: {
         cursive: 'URW Chancery L, cursive',
         freeMono: 'FreeMono, monospace',
+        apple:  'Apple Chancery, cursive',
       },
       colors: {
         'background': '#393256',
