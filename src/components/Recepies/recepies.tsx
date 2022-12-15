@@ -17,7 +17,7 @@ export default function App() {
             .then(function (response) {
         
                 let res = response.data.count
-                let div = (document.getElementById('blockRecepie') as HTMLDivElement)
+                let div = (document.getElementById('blockRecepie') as HTMLElement)
             
                 for (let i = 0; i < res.length; i++) {
                 
@@ -26,15 +26,25 @@ export default function App() {
                     console.log(JSON.stringify(transformTitle))
                 
                     let t = document.createElement('button')
+                    t.value = transformTitle
                     t.style.color = 'white'
                     t.style.fontWeight = 'bold'
                     t.style.fontSize = '30px'
                     t.id = "openModal"
+                    t.style.backgroundColor = 'black'
+                    t.style.borderRadius = '8px'
+                    t.style.width = "400px"
                     t.innerHTML = transformTitle
 
                     div.appendChild(t)
                 }
 
+                const buttonClicked = (document.getElementById('openModal') as HTMLButtonElement)
+                buttonClicked.addEventListener("click", () => {
+                    const buttonValue = (document.getElementById('openModal') as HTMLButtonElement).value 
+                    const setLocalStorage = localStorage.setItem("ValButton", buttonValue)
+                })
+ 
                 
             })
     }
@@ -47,7 +57,7 @@ export default function App() {
    
 
         return (
-            <div className=" h-screen bg-background flex flex-col items-center gap-y-5">
+            <div className=" w-screen h-screen bg-background flex flex-col items-center gap-y-5">
                 <header className='flex flex-col items-center'>
                     <Menu className='w-40' />
                     <h1 className="font-cursive text-6xl text-tittle">Receitas</h1>
@@ -63,9 +73,13 @@ export default function App() {
                     <Link to="/AdcionarReceita"><button className='bg-tittle p-2 rounded-lg hover:bg-[#fde68a] font-bold w-full'>Adicione sua receita</button></Link>
                 </div>
 
-                <div className='flex flex-col items-center border-solid border-black bg-[#1f2937] rounded-2xl gap-y-5 w-full'>
-                    <Link to='/receita' id='blockRecepie' className='flex flex-col items-center w-full h-full gap-y-5'></Link>
-                </div>
+                <ul>
+                    <li  className='flex flex-col items-center justify-center'>
+                        
+                        <Link to='/receita' id='blockRecepie' className='flex flex-col items-center w-full h-full gap-y-5 '></Link>
+                        
+                    </li>
+                </ul>
 
             </div>
 
