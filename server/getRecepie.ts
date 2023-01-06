@@ -12,4 +12,25 @@ export async function getRecepie(fastify: FastifyInstance){
 
         return { count }
     })
+
+    fastify.post('/getRecepieTittle', async (reponse, reply) => {
+        const recepieTittle = z.object({
+            tittle: z.string()
+        })
+
+        const { tittle } = recepieTittle.parse(reponse.body)
+        
+        try {
+            await prisma.recepie.findUnique({
+                where: {
+                    tittle: "Bolo de Cenoura"
+                }
+            })
+        } catch (error) {
+            throw error
+        }
+
+        return reply.status(201).send()
+    })
+    
 }
